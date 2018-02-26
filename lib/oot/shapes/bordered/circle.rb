@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require 'oot/shapes/generic/circle'
+require 'oot/cloneable'
 
 module OOT::Shapes
   class BorderedCircle < GenericCircle
-    attr_reader :border_color, :border_width
+    include OOT::Cloneable
 
-    def initialize(radius:, options: {})
+    attr_accessor :border_color, :border_width
+
+    def initialize(radius: 0, options: {})
       super(radius: radius)
 
       @border_color = options[:border_color]

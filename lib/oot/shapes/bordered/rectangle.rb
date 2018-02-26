@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 require 'oot/shapes/generic/rectangle'
+require 'oot/cloneable'
 
 module OOT::Shapes
   class BorderedRectangle < GenericRectangle
-    attr_reader :border_color, :border_width
+    include OOT::Cloneable
 
-    def initialize(width:, height:, options: {})
+    attr_accessor :border_color, :border_width
+
+    def initialize(width: 0, height: 0, options: {})
       super(width: width, height: height)
 
       @border_color = options[:border_color]

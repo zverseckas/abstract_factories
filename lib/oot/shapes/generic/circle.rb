@@ -4,7 +4,7 @@ require 'oot/shapes/abstract'
 
 module OOT::Shapes
   class GenericCircle < AbstractShape
-    attr_reader :radius
+    attr_accessor :radius
 
     def initialize(radius:)
       @radius = radius
@@ -22,8 +22,6 @@ module OOT::Shapes
     def diameter
       2 * radius
     end
-
-    private
 
     def validate!
       return if radius > 0

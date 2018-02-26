@@ -4,7 +4,7 @@ require 'oot/shapes/abstract'
 
 module OOT::Shapes
   class GenericRectangle < AbstractShape
-    attr_reader :width, :height
+    attr_accessor :width, :height
 
     def initialize(width:, height:)
       @width = width
@@ -24,8 +24,6 @@ module OOT::Shapes
     def diagonal
       Math.sqrt(width**2 + height**2)
     end
-
-    private
 
     def validate!
       return if width > 0 && height > 0

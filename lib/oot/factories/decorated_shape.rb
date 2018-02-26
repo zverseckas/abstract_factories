@@ -28,18 +28,22 @@ module OOT::Factories
     end
 
     def build_circle(radius:)
-      circle_proto.class.new(
-        radius: radius,
-        options: options(circle_proto),
-      )
+      copy = circle_proto.deep_clone
+
+      copy.radius = radius
+
+      copy.validate!
+      copy
     end
 
     def build_rectangle(width:, height:)
-      rectangle_proto.class.new(
-        width: width,
-        height: height,
-        options: options(rectangle_proto),
-      )
+      copy = rectangle_proto.deep_clone
+
+      copy.width = width
+      copy.height = height
+
+      copy.validate!
+      copy
     end
 
     private
@@ -48,26 +52,6 @@ module OOT::Factories
       return if ALLOWED_CLASSES.include?(circle_proto.class) &&
                 ALLOWED_CLASSES.include?(rectangle_proto.class)
       raise ArgumentError, 'unknown shape prototype'
-    end
-
-    def options(proto)
-      return border_options(proto) if proto.respond_to?(:border_color)
-      shadow_options(proto) if proto.respond_to?(:shadow_color)
-    end
-
-    def border_options(proto)
-      {
-        border_color: proto.border_color,
-        border_width: proto.border_width,
-      }
-    end
-
-    def shadow_options(proto)
-      {
-        shadow_color: proto.shadow_color,
-        shadow_spread: proto.shadow_spread,
-        shadow_blur: proto.shadow_blur,
-      }
     end
   end
 end

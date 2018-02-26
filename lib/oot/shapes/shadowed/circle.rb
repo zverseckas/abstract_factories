@@ -4,7 +4,7 @@ require 'oot/shapes/generic/circle'
 
 module OOT::Shapes
   class ShadowedCircle < GenericCircle
-    attr_reader :shadow_color, :shadow_spread, :shadow_blur
+    attr_accessor :shadow_color, :shadow_spread, :shadow_blur
 
     def initialize(radius:, options: {})
       super(radius: radius)
@@ -14,6 +14,12 @@ module OOT::Shapes
       @shadow_blur = options[:shadow_blur].to_i
 
       validate_shadow!
+    end
+
+    def deep_clone
+      copy = clone
+      copy.shadow_color = @shadow_color.clone
+      copy 
     end
 
     private
