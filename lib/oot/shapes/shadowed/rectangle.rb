@@ -6,18 +6,19 @@ module OOT::Shapes
   class ShadowedRectangle < GenericRectangle
     attr_reader :shadow_color, :shadow_spread, :shadow_blur
 
-    def initialize(width:, height:, shadow_color:, shadow_spread:, shadow_blur:)
-      super(width: width, heigt: height)
+    def initialize(width:, height:, options: {})
+      super(width: width, height: height)
 
-      @shadow_color = shadow_color
-      @shadow_spread = shadow_spread.to_i
-      @shadow_blur = shadow_blur.to_i
+      @shadow_color = options[:shadow_color]
+      @shadow_spread = options[:shadow_spread].to_i
+      @shadow_blur = options[:shadow_blur].to_i
 
       validate_shadow!
     end
 
+    private
+
     def validate_shadow!
-      super
       return if shadow_spread > 0 && shadow_blur > 0
       raise ArgumentError, 'invalid shadow spread or blur'
     end

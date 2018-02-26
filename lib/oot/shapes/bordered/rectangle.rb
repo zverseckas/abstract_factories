@@ -3,13 +3,14 @@
 require 'oot/shapes/generic/rectangle'
 
 module OOT::Shapes
-  class BorderedRectangle < GenericCircle
+  class BorderedRectangle < GenericRectangle
     attr_reader :border_color, :border_width
 
-    def initialize(width:, height:, border_color:, border_width:)
+    def initialize(width:, height:, options: {})
       super(width: width, height: height)
-      @border_color = border_color
-      @border_width = border_width
+
+      @border_color = options[:border_color]
+      @border_width = options[:border_width].to_i
 
       validate_border!
     end

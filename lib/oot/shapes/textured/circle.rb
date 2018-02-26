@@ -6,9 +6,9 @@ module OOT::Shapes
   class TexturedCircle < GenericCircle
     attr_reader :texture
 
-    def initialize(radius:, texture:)
+    def initialize(radius:, options: {})
       super(radius: radius)
-      @texture = texture
+      @texture = options[:texture]
     end
   end
 end

@@ -3,12 +3,12 @@
 require 'oot/shapes/generic/rectangle'
 
 module OOT::Shapes
-  class FilledRectangle < GenericRectangle
-    attr_reader :fill
+  class ColoredRectangle < GenericRectangle
+    attr_reader :color
 
-    def initialize(width:, height:, fill:)
+    def initialize(width:, height:, options: {})
       super(width: width, height: height)
-      @fill = fill
+      @color = options[:color]
     end
   end
 end

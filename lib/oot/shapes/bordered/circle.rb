@@ -6,11 +6,11 @@ module OOT::Shapes
   class BorderedCircle < GenericCircle
     attr_reader :border_color, :border_width
 
-    def initialize(radius:, border_color:, border_width:)
+    def initialize(radius:, options: {})
       super(radius: radius)
 
-      @border_color = border_color
-      @border_width = border_width.to_i
+      @border_color = options[:border_color]
+      @border_width = options[:border_width].to_i
 
       validate_border!
     end

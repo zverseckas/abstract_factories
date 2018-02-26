@@ -3,12 +3,12 @@
 require 'oot/shapes/generic/circle'
 
 module OOT::Shapes
-  class FilledCircle < GenericCircle
-    attr_reader :fill
+  class ColoredCircle < GenericCircle
+    attr_reader :color
 
-    def initialize(radius:, fill:)
+    def initialize(radius:, options: {})
       super(radius: radius)
-      @fill = fill
+      @color = options[:color]
     end
   end
 end

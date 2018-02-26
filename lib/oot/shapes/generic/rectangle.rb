@@ -7,7 +7,9 @@ module OOT::Shapes
     attr_reader :width, :height
 
     def initialize(width:, height:)
-      @width, @height = width, height
+      @width = width
+      @height = height
+
       validate!
     end
 

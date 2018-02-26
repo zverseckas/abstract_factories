@@ -6,9 +6,9 @@ module OOT::Shapes
   class TexturedRectangle < GenericRectangle
     attr_reader :texture
 
-    def initialize(width:, height:, texture:)
+    def initialize(width:, height:, options: {})
       super(width: width, height: height)
-      @texture = texture
+      @texture = options[:texture]
     end
   end
 end
